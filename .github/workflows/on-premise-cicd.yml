@@ -24,7 +24,7 @@ jobs:
       - name: Checkout Source Code #위에서 받은 tag 파라미터 사용
         uses: actions/checkout@v4
         with:
-          ref: '${{ github.event.input.tags }}'
+          ref: '${{ github.event.inputs.tags }}'
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew

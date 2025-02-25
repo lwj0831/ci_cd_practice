@@ -1,4 +1,4 @@
-name: on-premise-cicd
+name: cicd
 on:
   workflow_dispatch:
     inputs:
@@ -15,7 +15,7 @@ jobs:
     steps:
       - id: set-version #변수명 사용위해 name 말고 id 사용
         run: |
-          echo "VERSION_NAME=$(echo "${{github.event.input.tags}}" | sed"s/\./\-/g")" >> $GITHUB_OUTPUT
+          echo "VERSION_NAME=$(echo "${{github.event.inputs.tags}}" | sed"s/\./\-/g")" >> $GITHUB_OUTPUT
       - name: Debug Input Tags
         run: |
           echo "Input Tags: ${{ github.event.inputs.tags }}"

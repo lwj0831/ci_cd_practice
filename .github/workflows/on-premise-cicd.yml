@@ -11,11 +11,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      release: ${{steps.set-version.outputs.VERSION_NAME}}
+      release: ${{ steps.set-version.outputs.VERSION_NAME }}
     steps:
       - id: set-version #변수명 사용위해 name 말고 id 사용 / set-version.outputs.VERSION_NAME
         run: |
-          echo "VERSION_NAME=$(echo "${{github.event.input.tags}}" | sed"s/\./\-/g")" >> $GITHUB_OUTPUT
+          echo "VERSION_NAME=$(echo "${{ github.event.input.tags }}" | sed "s/\./\-/g")" >> $GITHUB_OUTPUT
       #OUTPUT으로 등록
 
       - name : Check Version Name

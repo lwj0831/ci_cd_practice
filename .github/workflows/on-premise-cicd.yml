@@ -17,9 +17,14 @@ jobs:
         run: |
           echo "VERSION_NAME=$(echo "${{github.event.input.tags}}" | sed"s/\./\-/g")" >> $GITHUB_OUTPUT
 
+      - name: Debug Input Tags
+        run: |
+          echo "Input Tags: ${{ github.event.inputs.tags }}"
+
       - name : Check Version Name
         run: |
           echo "Check Version -> ${{steps.set-version.outputs.VERSION_NAME}}"
+      
 
       - name: Checkout Source Code #위에서 받은 tag 파라미터 사용
         uses: actions/checkout@v4

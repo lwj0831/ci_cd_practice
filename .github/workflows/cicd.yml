@@ -13,7 +13,7 @@ jobs:
     outputs:
       release: ${{steps.set-version.outputs.VERSION_NAME}}
     steps:
-      - id: set-version #변수명 사용위해 name 말고 id 사용
+      - id: set-version #변수명 사용위해 name 말고 id 사용 , github.event.inputs.tags(inputs인거 조심)
         run: |
           echo "VERSION_NAME=$(echo "${{github.event.inputs.tags}}" | sed"s/\./\-/g")" >> $GITHUB_OUTPUT
       - name: Debug Input Tags

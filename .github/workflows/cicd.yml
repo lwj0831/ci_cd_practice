@@ -13,9 +13,10 @@ jobs:
     outputs:
       release: ${{ steps.set-version.outputs.VERSION_NAME }}
     steps:
-      - id: set-version # v1.0.0 -> v1-0-0
+      - id: set-version #v1.0.0 -> v1-1-1
         run: |
-          echo "VERSION_NAME=$(echo "${{ github.event.inputs.tags }}" | sed "s/\./\-/g")" >> $GITHUB_OUTPUT
+          VERSION_NAME=$(echo "${{ github.event.input.tags }}" | sed "s/\./\-/g")
+          echo "VERSION_NAME=$VERSION_NAME" >> $GITHUB_ENV
 
       - name: Check Version Name
         run: |

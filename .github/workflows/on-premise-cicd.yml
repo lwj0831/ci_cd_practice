@@ -18,13 +18,13 @@ jobs:
           echo "VERSION_NAME=$(echo "${{ github.event.input.tags }}" | sed "s/\./\-/g")" >> $GITHUB_OUTPUT
       #OUTPUT으로 등록
 
-      - name : Check Version Name
-        run: |
-          echo "Check Version -> ${{steps.set-version.outputs.VERSION_NAME}}"
-
       - name: Debug Input Tags
         run: |
           echo "Input Tags: ${{ github.event.inputs.tags }}"
+          
+      - name: Check Version Name
+        run: |
+          echo "Check Version -> ${{steps.set-version.outputs.VERSION_NAME}}"
 
       - name: Checkout Source Code
         uses: actions/checkout@v4

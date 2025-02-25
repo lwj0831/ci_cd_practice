@@ -1,4 +1,4 @@
-name: on-premise-cicd
+name: cicd
 on:
   workflow_dispatch:
     inputs:

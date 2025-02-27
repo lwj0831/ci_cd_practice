@@ -11,18 +11,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      release: ${{ steps.set-version.outputs.VERSION_NAME }}
+      release: ${{ steps.ses.VERSION_NAME t-version.output}}
     steps:
       - id: set-version #변수명 사용위해 name 말고 id 사용 / set-version.outputs.VERSION_NAME
         run: |
           echo "VERSION_NAME=$(echo "${{ github.event.inputs.tags }}" | sed "s/\./\-/g")" >> $GITHUB_OUTPUT
       #OUTPUT으로 등록
 
-      - name: Debug Input Tags
+      - name: Debug Input Tags #Optional
         run: |
           echo "Input Tags: ${{ github.event.inputs.tags }}"
 
-      - name: Check Version Name
+      - name: Check Version Name #Optional
         run: |
           echo "Check Version -> ${{steps.set-version.outputs.VERSION_NAME}}"
 
@@ -43,7 +43,7 @@ jobs:
       - name: Build with Gradlew
         run: ./gradlew clean test bootJar #clean, test, bootJar 실행
 
-      - name: Add version #bootJar로 build/libs에 생성된 jar파일 이름 변경
+      - name: Add version #build/libs에 생성된 jar파일 이름 변경
         run: |
           mv build/libs/cicd-study-0.0.1-SNAPSHOT.jar build/libs/cicd-study-${{ steps.set-version.outputs.VERSION_NAME }}.jar
 
